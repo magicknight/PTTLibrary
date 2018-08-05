@@ -607,7 +607,7 @@ class Library(object):
                     self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                     self.Log('無法解析的狀態! PTT Library 緊急停止')
                     self.logout()
-                    sys.exit()
+                    raise Exception("Invalid Char Stream")
             if ErrCode == ErrorCode.WaitTimeout:
                 Retry = True
             elif ErrCode != ErrorCode.Success:
@@ -832,7 +832,7 @@ class Library(object):
                 continue
                 # self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 # self.Log('無法解析的狀態! PTT Library 緊急停止')
-                # sys.exit()
+                # raise Exception("Invalid Char Stream")
             if FindResult:
                 break
         ErrCode = ErrorCode.Success
@@ -1382,7 +1382,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name + ' part 1', ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         Lines = self.__ReceiveData[ConnectIndex].split('\n')
         InfoLines = []
@@ -1575,7 +1575,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name + ' part 2', ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         FirstPage = FirstPage[FirstPage.find('[2J 作者'):]
         PostLineList = FirstPage.split('\n')
@@ -1759,7 +1759,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name + ' part 1', ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         if ErrCode != ErrorCode.Success:
             self.__APILock[ConnectIndex].release()
             self.__ErrorCode = ErrCode
@@ -1848,7 +1848,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name + ' part 2', ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         self.__APILock[ConnectIndex].release()
         self.__WaterBallProceeor()
@@ -1927,7 +1927,7 @@ class Library(object):
             if not isDetectedTarget:
                 # self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 # self.Log('無法解析的狀態! PTT Library 緊急停止')
-                # sys.exit()
+                # raise Exception("Invalid Char Stream")
                 ErrCode = ErrorCode.ParseError
                 self.__ErrorCode = ErrCode
                 return ErrCode, result
@@ -2030,7 +2030,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         if ErrCode != ErrorCode.Success:
             self.__APILock[ConnectIndex].release()
             self.__ErrorCode = ErrCode
@@ -2175,7 +2175,7 @@ class Library(object):
                     self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                     self.Log('無法解析的狀態! PTT Library 緊急停止')
                     self.logout()
-                    sys.exit()
+                    raise Exception("Invalid Char Stream")
             if ErrCode != ErrorCode.Success:
                 self.__APILock[ConnectIndex].release()
                 self.__ErrorCode = ErrCode
@@ -2376,7 +2376,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         if ErrCode != ErrorCode.Success:
             self.__APILock[ConnectIndex].release()
             self.__ErrorCode = ErrCode
@@ -2541,7 +2541,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         self.__APILock[ConnectIndex].release()
         self.__WaterBallProceeor()
@@ -2664,7 +2664,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         self.__APILock[ConnectIndex].release()
         self.__WaterBallProceeor()
@@ -2797,7 +2797,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         self.__APILock[ConnectIndex].release()
         self.__WaterBallProceeor()
@@ -3054,7 +3054,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         self.__APILock[ConnectIndex].release()
         self.__WaterBallProceeor()
@@ -3182,7 +3182,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
 
         self.__WaterBallProceeor()
         self.__APILock[ConnectIndex].release()
@@ -3383,7 +3383,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name, ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         if inputOperateType == OperateType.Query:
             result = []
@@ -3545,7 +3545,7 @@ class Library(object):
                 self.__showScreen(ErrCode, sys._getframe().f_code.co_name + 'Part 1', ConnectIndex=ConnectIndex)
                 self.Log('無法解析的狀態! PTT Library 緊急停止')
                 self.logout()
-                sys.exit()
+                raise Exception("Invalid Char Stream")
         
         if not NoMsg:
             for i in range(len(WaterBallListTemp)):
@@ -3641,7 +3641,7 @@ class Library(object):
                     self.__showScreen(ErrCode, sys._getframe().f_code.co_name + 'Part 2', ConnectIndex=ConnectIndex)
                     self.Log('無法解析的狀態! PTT Library 緊急停止')
                     self.logout()
-                    sys.exit()
+                    raise Exception("Invalid Char Stream")
 
         self.__WaterBallProceeor()
         self.__APILock[ConnectIndex].release()

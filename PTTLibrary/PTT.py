@@ -300,7 +300,7 @@ class Library(object):
                         TimeCout = 0
                         NowTime = time.time()
                         if (NowTime - StartTime) >= SendMessageTimeout:
-                            self.Log('超時斷線，重新連線')
+                            self.Log('超時斷線，重新連線--1')
                             self.__connectRemote(ConnectIndex)
                             return self.__operatePTT(ConnectIndex, SendMessage, CatchTargetList, Refresh, ExtraWait)
                     TimeCout += 1
@@ -318,7 +318,7 @@ class Library(object):
                     TimeCout = 0
                     NowTime = time.time()
                     if (NowTime - StartTime) >= SendMessageTimeout:
-                        self.Log('超時斷線，重新連線')
+                        self.Log('超時斷線，重新連線--2')
                         self.__connectRemote(ConnectIndex)
                         return self.__operatePTT(ConnectIndex, SendMessage, CatchTargetList, Refresh, ExtraWait)
                 TimeCout += 1
@@ -351,7 +351,7 @@ class Library(object):
                     EveryWait = MinEveryWait
                 
         except socket.timeout:
-            self.Log('超時斷線，重新連線')
+            self.Log('超時斷線，重新連線--3')
             self.__connectRemote(ConnectIndex)
             return self.__operatePTT(ConnectIndex, SendMessage, CatchTargetList, Refresh, ExtraWait)
         except OSError:

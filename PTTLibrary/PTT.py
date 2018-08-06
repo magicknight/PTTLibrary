@@ -305,7 +305,7 @@ class Library(object):
                             return self.__operatePTT(ConnectIndex, SendMessage, CatchTargetList, Refresh, ExtraWait)
                     TimeCout += 1
                 
-                EncodeMessage, Len = uao.encode(SendMessage)
+                EncodeMessage, Len = uao.encode(SendMessage,  errors="ignore")
                 self.__ConnectList[ConnectIndex].channel.send(EncodeMessage)
             
             TimeCout = 0

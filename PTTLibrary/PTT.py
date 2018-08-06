@@ -860,7 +860,7 @@ class Library(object):
         
         # 前進至板面
 
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         if '看板《' + Board + '》' in self.__ReceiveData[ConnectIndex] and '文章選讀' in self.__ReceiveData[ConnectIndex]:
             self.Log('已經位於 ' + Board + ' 板', LogLevel.DEBUG)
@@ -1074,7 +1074,7 @@ class Library(object):
             TempStartIndex = TempEndIndex
             TempEndIndex = TempStartIndex + 1
         
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
         
         for Push in PushList:
             # print('Push:', Push)
@@ -1251,7 +1251,7 @@ class Library(object):
         if PostID != '' and Search != '':
             self.Log('使用文章代碼取得文章 搜尋條件失效', LogLevel.WARNING)
 
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         for i in range(3):
             ErrCode, Post = self.__getPost(Board, PostID, PostIndex, _ConnectIndex, Search)
@@ -1716,7 +1716,7 @@ class Library(object):
             self.__PTTBUGDetectUnit
         ]
         
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
         while not isBreakDetect:
             ErrCode, CatchIndex = self.__operatePTT(ConnectIndex, SendMessage=SendMessage, Refresh=Refresh)
             if ErrCode == ErrorCode.WaitTimeout:
@@ -1863,7 +1863,7 @@ class Library(object):
         if not self.__APICheck():
             return self.__ErrorCode, result
 
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         for i in range(3):
             ErrCode, result = self.__getTime()
@@ -1972,7 +1972,7 @@ class Library(object):
             self.__ErrorCode = ErrCode
             return ErrCode, result
         
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         SendMessage = '\x1b\x4fD\x1b\x4fD\x1b\x4fD\x1b\x4fDT\rQ\r' + UserID + '\r'
         Refresh = True
@@ -2120,7 +2120,7 @@ class Library(object):
         if Board == '' and Search != '':
             self.Log('郵件模式下無法使用搜尋條件', LogLevel.WARNING)
 
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
         if Board == '':
 
             SendMessage = self.__gotoMainMenu + ' \x1aM0\r$'
@@ -2249,7 +2249,7 @@ class Library(object):
         else:
             self.Log('信箱中最新郵件編號: ' + str(NewestMailIndex), LogLevel.DEBUG)
 
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         SendMessage = str(MailIndex) + '\r\r'
         Refresh = True
@@ -2451,7 +2451,7 @@ class Library(object):
             self.__ErrorCode = ErrCode
             return ErrCode
             
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         # 前進至主頁面
         SendMessage = '\x1b\x4fD\x1b\x4fD\x1b\x4fD\x1b\x4fD'
@@ -2573,7 +2573,7 @@ class Library(object):
             while len(NewPassword) > 8:
                 NewPassword = NewPassword[:-1]
         
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         # 前進至主頁面
         SendMessage = '\x1b\x4fD\x1b\x4fD\x1b\x4fD\x1b\x4fD'
@@ -2711,7 +2711,7 @@ class Library(object):
             self.__ErrorCode = ErrCode
             return ErrCode
         
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         Board = str(Board)
         Content = str(Content)
@@ -2834,7 +2834,7 @@ class Library(object):
             
             self.__SuccessCrawCount += 1
             
-            self.__CrawLock.acquire()
+            self.__CrawLock.acquire(timeout=self.__DefaultTimeout)
             # self.Log(Post.getTitle())
             try:
                 PostHandler(Post)
@@ -2989,7 +2989,7 @@ class Library(object):
             self.__ErrorCode = ErrCode
             return ErrCode
         
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         # 前進至主頁面
         SendMessage = self.__gotoMainMenu
@@ -3112,7 +3112,7 @@ class Library(object):
             self.__ErrorCode = ErrCode
             return ErrCode
         
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         SendMessage = '\x1b\x4fD\x1b\x4fD\x1b\x4fD\x1b\x4fDqs' + Board + '\r\x03\x03 '
         # 前進至文章
@@ -3248,7 +3248,7 @@ class Library(object):
                 self.__ErrorCode = ErrCode
                 return ErrCode, result
 
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         SendMessage = self.__gotoMainMenu + 'N\r'
 
@@ -3429,7 +3429,7 @@ class Library(object):
             self.__ErrorCode = ErrCode
             return ErrCode, result
 
-        self.__APILock[ConnectIndex].acquire()
+        self.__APILock[ConnectIndex].acquire(timeout=self.__DefaultTimeout)
 
         SendMessage = self.__gotoMainMenu + 'T\rD\r'
 
